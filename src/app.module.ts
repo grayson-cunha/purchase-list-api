@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
+import { Product } from './products/product.entity';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -15,11 +17,12 @@ import { AppController } from './app.controller';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [],
+        entities: [Product],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
+    ProductsModule,
   ],
   controllers: [AppController],
 })
