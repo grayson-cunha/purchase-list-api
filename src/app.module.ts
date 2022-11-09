@@ -4,6 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { Product } from './products/product.entity';
 import { ProductsModule } from './products/products.module';
+import { PurchaseList } from './purchase-list/purchase-list.entity';
+import { PurchaseListModule } from './purchase-list/purchase-list.module';
 
 @Module({
   imports: [
@@ -17,12 +19,13 @@ import { ProductsModule } from './products/products.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [Product],
+        entities: [Product, PurchaseList],
         synchronize: true,
       }),
       inject: [ConfigService],
     }),
     ProductsModule,
+    PurchaseListModule,
   ],
   controllers: [AppController],
 })
