@@ -6,6 +6,7 @@ import { Product } from './products/product.entity';
 import { ProductsModule } from './products/products.module';
 import { PurchaseList } from './purchase-list/purchase-list.entity';
 import { PurchaseListModule } from './purchase-list/purchase-list.module';
+import { User } from './users/user.entity';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { PurchaseListModule } from './purchase-list/purchase-list.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        entities: [Product, PurchaseList],
+        entities: [Product, PurchaseList, User],
         synchronize: true,
       }),
       inject: [ConfigService],
