@@ -16,4 +16,7 @@ export class Product {
 
   @Column({ type: 'real' })
   price: number;
+
+  @Column()
+  supermarket: string;
 }
