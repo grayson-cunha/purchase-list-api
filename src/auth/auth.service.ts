@@ -1,4 +1,7 @@
 import { Injectable } from '@nestjs/common';
+
+import * as bcrypt from 'bcrypt';
+
 import { User } from '../users/user.entity';
 import { UsersService } from '../users/users.service';
 
@@ -6,7 +9,14 @@ import { UsersService } from '../users/users.service';
 export class AuthService {
   constructor(private userService: UsersService) {}
 
-  signup(user: User) {
-    return this.userService.create(user);
+  async signup(user: User) {
+    const { password } = user;
+    const salt = 8;
+
+    const hash = await bcrypt.hash(password, salt);
+
+    const { email, id, created_at } = await this.userService.create({ ...user, password: hash });
+
+    return { id, email, created_at };
   }
 }
