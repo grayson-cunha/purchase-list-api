@@ -34,4 +34,18 @@ describe('Purchase List Controller (e2e)', () => {
         expect(email).toEqual(email);
       });
   });
+
+  it('should login a signup request', () => {
+    const email = 'test2@test.com';
+
+    return request(app.getHttpServer())
+      .post('/auth/signup')
+      .send({ email, password: '1234' })
+      .expect(201)
+      .then((res) => {
+        const { id, email } = res.body;
+        expect(id).toBeDefined();
+        expect(email).toEqual(email);
+      });
+  });
 });
