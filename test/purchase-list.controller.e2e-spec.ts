@@ -5,6 +5,7 @@ import { AppModule } from '../src/app.module';
 import { Repository } from 'typeorm';
 import { PurchaseList } from '../src/purchase-list/purchase-list.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { JwtAuthGuard } from '../src/guards/jwt.auth.guard';
 
 describe('Purchase List Controller (e2e)', () => {
   let app: INestApplication;
@@ -12,7 +13,10 @@ describe('Purchase List Controller (e2e)', () => {
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
-    }).compile();
+    })
+      .overrideGuard(JwtAuthGuard)
+      .useValue({ canActivate: jest.fn(() => true) })
+      .compile();
 
     app = moduleFixture.createNestApplication();
     await app.init();

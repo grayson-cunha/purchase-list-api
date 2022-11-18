@@ -35,17 +35,18 @@ describe('Purchase List Controller (e2e)', () => {
       });
   });
 
-  it('should login a signup request', () => {
+  it('should login a signup request', async () => {
     const email = 'test2@test.com';
 
+    await request(app.getHttpServer()).post('/auth/signup').send({ email, password: '1234' });
+
     return request(app.getHttpServer())
-      .post('/auth/signup')
+      .post('/auth/signin')
       .send({ email, password: '1234' })
-      .expect(201)
+      .expect(200)
       .then((res) => {
-        const { id, email } = res.body;
-        expect(id).toBeDefined();
-        expect(email).toEqual(email);
+        const { access_token } = res.body;
+        expect(access_token).toBeDefined();
       });
   });
 });
