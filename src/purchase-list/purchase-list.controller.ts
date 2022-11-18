@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../guards/jwt.auth.guard';
 import { GetId } from '../shared/decorators/get-id.decorator';
 import { PurchaseList } from './purchase-list.entity';
 import { PurchaseListService } from './purchase-list.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('/purchase-lists')
 export class PurchaseListController {
   constructor(private purchaseListService: PurchaseListService) {}
