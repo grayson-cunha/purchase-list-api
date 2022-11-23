@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Product {
@@ -8,15 +8,24 @@ export class Product {
   @Column()
   short_name: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
   @Column()
   unit_measurement: string;
 
   @Column({ type: 'real' })
-  price: number;
+  unit_price: number;
+
+  @Column({ type: 'real' })
+  total_price: number;
 
   @Column()
   supermarket: string;
+
+  @CreateDateColumn()
+  imported_at: Date;
+
+  @Column()
+  invoice_date: string;
 }

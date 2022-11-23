@@ -17,4 +17,8 @@ export class ProductsService {
   findAll() {
     return this.productRepository.find();
   }
+
+  async saveMany(products: Product[]) {
+    return this.productRepository.save(products);
+  }
 }
