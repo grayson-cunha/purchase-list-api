@@ -14,7 +14,7 @@ Doing that allow the user to simulate a purchase list whe they need to do the su
 
 When you do the supermarket you receive a invoice with a number with this number you can consult the products bought in the following link [Search NFCe](https://portalsped.fazenda.mg.gov.br/portalnfce/sistema/consultaarg.xhtml).
 
-At the moment you has to copy the table in another csv to import at the system, but it can be improved.
+At the moment you has to copy the table in another csv to import at the system, but it can be improved. In my researchs I found the sefaz has an API to consult it but it is a paid service. So at the moment has to exist a manual process.
 
 ## How to start?
 
